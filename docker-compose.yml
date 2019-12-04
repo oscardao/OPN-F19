@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  database:
+    build: ./database
+    networks:
+      - network2
+
+  backend:
+    build: ./backend
+    depends_on:
+      - database
+    ports:
+      - "5000:5000"
+    networks:
+      - network1
+      - network2
+
+  proxy:
+    build: ./proxy
+    depends_on:
+      - backend
+    networks:
+      - network1
+
+networks:
+  network1:
+    name: 'network1'
+  network2:
+    name: 'network2'
