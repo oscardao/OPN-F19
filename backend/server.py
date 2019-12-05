@@ -4,12 +4,8 @@ import mysql.connector
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_DB'] = 'takehome'
-
 def connect():
-	return mysql.connector.connect(host='thdatabase', database='takehome',user='root')
+	return mysql.connector.connect(host='thdatabase', database='takehome',user='root',password='')
 
 @app.route('/')
 def index():
