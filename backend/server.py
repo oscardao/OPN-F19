@@ -23,7 +23,7 @@ def getPersons():
 	rowAway = []
 	
 	for r in rowz:
-		row = (row.PersonID, row.Firstname, row.Lastname)
+		row = (r.PersonID, r.Firstname, r.Lastname)
 		rowAway.append(row)
 	
 	
