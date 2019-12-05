@@ -1,9 +1,14 @@
 version: '3.5'
 services:
-  database:
-    build: ./database
+
+  proxy:
+    build: ./proxy
+    depends_on:
+      - backend
+    ports:
+      - "81:81"
     networks:
-      - network2
+      - network1
 
   backend:
     build: ./backend
@@ -15,12 +20,10 @@ services:
       - network1
       - network2
 
-  proxy:
-    build: ./proxy
-    depends_on:
-      - backend
+  database:
+    build: ./database
     networks:
-      - network1
+      - network2
 
 networks:
   network1:

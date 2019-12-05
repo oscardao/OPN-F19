@@ -7,3 +7,5 @@ CREATE TABLE Person (
 	Firstname text,
 	Lastname text
 );
+
+INSERT INTO Person (Firstname, Lastname) VALUES ('Oscar', 'Dao');
