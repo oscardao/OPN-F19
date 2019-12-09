@@ -6,7 +6,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "81:81"
+      - "443:443"
     networks:
       - network1
 
