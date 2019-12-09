@@ -5,32 +5,32 @@ import mysql.connector
 app = Flask(__name__)
 
 class Person:
-	def __init__(self, firstname, lastname, id):
-		self.firstname = firstname
-		self.lastname = lastname
-		self.id = id
+	def __init__(self, Firstname, Lastname, PersonID):
+		self.Firstname = Firstname
+		self.Lastname = Lastname
+		self.PersonID = PersonID
 
 def connect():
 	return mysql.connector.connect(host='database', database='takehome',user='root')
 
-@app.route('/persons', methods=['GET'])
+@app.route('/persons/')
 def getPersons():
 	connection = connect()
-	statement = "SELECT * FROM Person"
 
 	cur = connection.cursor()
-	cur.execute(statement)
+	cur.execute("SELECT * FROM Person")
 
-	rowz = cur.fetchall()
-	rowArray = []
+	rows = cur.fetchall()
 
-	for r in rowz:
-		row = (r[0], r[1], r[2])
-		rowArray.append(row)
+	personArray = []
+	personDictionary = {}
 
-	data = json.dumps(rowArray)
-	jsonData = jsonify(data)
-	return jsonData
+	for r in rows:
+		personDictionary = {'Firstname': r[1], 'PersonID': r[0], 'Lastname': r[2]}
+		personArray.append(personDictionary)
+		personDictionary = {}
+
+	return jsonify(personArray)
 
 @app.route('/person', methods=['POST'])
 def addPerson():
